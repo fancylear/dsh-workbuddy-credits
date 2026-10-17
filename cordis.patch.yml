@@ -1,0 +1,9 @@
+# The credit panel's Host half: one loopback-only read route in front of
+# dsh-workbuddy-connect's billing reader. The panel's browser half fetches it.
+- insert:
+    - id: workbuddy-credits
+      name: dsh-workbuddy-credits
+      config:
+        # A served picture counts as fresh for this long, so open/close cycles
+        # in the GUI never reach the billing API. Manual refresh bypasses it.
+        cacheTtlMs: 60000
