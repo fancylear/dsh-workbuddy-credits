@@ -112,23 +112,6 @@ curl 'http://127.0.0.1:19387/plugins/dsh-workbuddy-credits/status?provider=workb
 
 上游返回 `signed-in` 以外、或无法识别的状态时，一律按 `unavailable` 处理，不会误报成「未登录」把你引去重新登录。
 
-## 开发
-
-无构建步骤：改完 `client.js` 就是改完运行时代码。
-
-```bash
-npm test          # 三组自包含测试（无需 DSH、无需网络）
-npm run test:live # 追加在运行中的 Harness 上的实测
-```
-
-| 测试 | 覆盖 |
-|---|---|
-| `test/client.contract.mjs` | manifest、模块加载契约、槽位注册形状（含 `sidebar.id === main.key`） |
-| `test/client.render.mjs` | 面板数据流与渲染树、刷新 / 切版 / 失败状态 |
-| `test/host.smoke.mjs` | 真实路由：缓存、并发合并、投影、loopback 防护、各类失败降级 |
-| `test/live.integration.mjs` | 装进运行中的 DSH 后的真实行为（需要 `--live`） |
-
-**验证边界**：自动化覆盖组件树、props、数据流，以及「CSS 是否只引用主题 token」；**布局观感与明暗主题呈现需要人眼在 GUI 里确认**。
 
 ## 已知限制
 
